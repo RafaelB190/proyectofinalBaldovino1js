@@ -11,7 +11,8 @@ body {
     font-family: var(--font-family);
     margin: var(--primary-margin);
     line-height: 1.6;
-    background-color: #f9f9f9;
+    background-image: url('/mnt/data/handcrafted-pasta-preparation-captured-in-a-rustic-kitchen-setting-chef-kneading-dough-on-a-flour-d.jpeg');
+    background-size: cover;
     color: #333;
 }
 
@@ -19,6 +20,7 @@ body {
     max-width: var(--container-max-width);
     margin: auto;
     padding: 0 15px;
+    background-color: rgba(255, 255, 255, 0.8);
 }
 
 .producto {
@@ -48,4 +50,10 @@ button:hover {
     .container {
         padding: 0 10px;
     }
+
+    button {
+        font-size: 0.875rem;
+        padding: 0.5rem;
+    }
 }
+
