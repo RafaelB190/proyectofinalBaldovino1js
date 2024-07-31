@@ -1,39 +1,50 @@
 import bechamelImage from "./imagen/bechamel.jpeg";
 import bolognesaImage from "./imagen/bolognesa.jpeg";
 import canelonesImage from "./imagen/canelones.jpeg";
-import backgroundImage from "./imagen/fondo de pasta.jpeg";
+import fondoDePastaImage from "./imagen/fondo de pasta.jpeg";
 import humitaImage from "./imagen/humita.jpeg";
 import lasañaImage from "./imagen/lasaña.jpeg";
 import raviolesImage from "./imagen/ravioles.jpeg";
-import salsaMixImage from "./imagen/salsa_mix.jpeg";
+import salsaMixImage from "./imagen/salsamix.jpeg";
 import scarparoImage from "./imagen/scarparo.jpeg";
 import sorrentinoImage from "./imagen/sorrentinos.jpeg";
 import tallarinesImage from "./imagen/tallarines.jpeg";
 import './styles.css';
 
-document.addEventListener('DOMContentLoaded', () => {
-    const productos = [
-        { nombre: "Sorrentinos", precio: 3000, imagen: sorrentinoImage },
-        { nombre: "Humita", precio: 1500, imagen: humitaImage },
-        { nombre: "Ravioles", precio: 2500, imagen: raviolesImage },
-        { nombre: "Tallarines", precio: 2000, imagen: tallarinesImage },
-        { nombre: "Bologñesa", precio: 1800, imagen: bolognesaImage },
-        { nombre: "Scarparo", precio: 2200, imagen: scarparoImage },
-        { nombre: "Lasaña", precio: 3500, imagen: lasañaImage },
-        { nombre: "Canelones", precio: 3200, imagen: canelonesImage },
-        { nombre: "Salsa Mix", precio: 1000, imagen: salsaMixImage },
-        { nombre: "Bechamel", precio: 1200, imagen: bechamelImage }
-    ];
+const productos = [
+    { nombre: "Sorrentinos", precio: 3000, imagen: sorrentinoImage },
+    { nombre: "Humita", precio: 1500, imagen: humitaImage },
+    { nombre: "Ravioles", precio: 2500, imagen: raviolesImage },
+    { nombre: "Tallarines", precio: 2000, imagen: tallarinesImage },
+    { nombre: "Bologñesa", precio: 1800, imagen: bolognesaImage },
+    { nombre: "Scarparo", precio: 2200, imagen: scarparoImage },
+    { nombre: "Lasaña", precio: 3500, imagen: lasañaImage },
+    { nombre: "Canelones", precio: 3200, imagen: canelonesImage },
+    { nombre: "Salsa Mix", precio: 1000, imagen: salsaMixImage },
+    { nombre: "Bechamel", precio: 1200, imagen: bechamelImage }
+];
 
-    document.body.style.backgroundImage = `url(${backgroundImage})`;
+const crearElementoImagen = (producto) => {
+    const imgElement = document.createElement('img');
+    imgElement.src = producto.imagen;
+    imgElement.alt = producto.nombre;
+    imgElement.className = 'img-fluid mt-3';
+    return imgElement;
+};
 
+const mostrarProductos = () => {
+    const productosContainer = document.getElementById('productos');
     productos.forEach(producto => {
-        const imgElement = document.createElement('img');
-        imgElement.src = producto.imagen;
-        imgElement.alt = producto.nombre;
-        imgElement.className = 'img-fluid mt-3';
-        document.getElementById('productos').appendChild(imgElement);
+        const imgElement = crearElementoImagen(producto);
+        productosContainer.appendChild(imgElement);
     });
+};
+
+document.addEventListener('DOMContentLoaded', () => {
+    document.body.style.backgroundImage = `url(${fondoDePastaImage})`;
+    mostrarProductos();
+});
+
 
     const obtenerPrecio = nombreProducto => {
         const producto = productos.find(p => p.nombre === nombreProducto);
@@ -144,7 +155,7 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         try {
-            const response = await fetch('https://api.tienda-de-pastas.com/usuarios', {
+            const response = await fetch('https://jsonplaceholder.typicode.com/users', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(nuevoUsuario)
@@ -162,16 +173,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    const mostrarProductos = () => {
-        const productosContainer = document.getElementById('productos');
-        if (!productosContainer) {
-            console.error('El contenedor de productos no existe');
-            return;
-        }
-
-        const productosHTML = productos.map(p => `<li>${p.nombre} - $${p.precio}</li>`).join('');
-        productosContainer.innerHTML = `<ul>${productosHTML}</ul>`;
-    };
+    
+    
 
     document.getElementById("agregarBtn").addEventListener("click", agregarAlCarrito);
     document.getElementById("finalizarBtn").addEventListener("click", finalizarCompra);
@@ -179,5 +182,3 @@ document.addEventListener('DOMContentLoaded', () => {
 
     actualizarResultado(cargarCarrito());
     mostrarProductos();
-});
-

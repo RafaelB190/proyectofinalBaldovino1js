@@ -1,59 +1,83 @@
-:root {
-    --font-family: Arial, sans-serif;
-    --primary-margin: 20px;
-    --container-max-width: 600px;
-    --border-color: #ccc;
-    --border-width: 1px;
-    --border-style: solid;
-}
-
 body {
-    font-family: var(--font-family);
-    margin: var(--primary-margin);
-    line-height: 1.6;
-    background-image: url('/mnt/data/handcrafted-pasta-preparation-captured-in-a-rustic-kitchen-setting-chef-kneading-dough-on-a-flour-d.jpeg');
+    font-family: 'Arial', sans-serif;
     background-size: cover;
-    color: #333;
+    background-position: center;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.container {
-    max-width: var(--container-max-width);
-    margin: auto;
-    padding: 0 15px;
-    background-color: rgba(255, 255, 255, 0.8);
+#productos {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 20px;
 }
 
-.producto {
-    margin-bottom: 1rem;
+#productos img {
+    width: 200px;
+    height: auto;
+    margin: 10px;
+    border: 1px solid #ccc;
+    padding: 5px;
+    border-radius: 5px;
 }
 
-.resultado {
-    margin-top: 1.5rem;
-    border-top: var(--border-width) var(--border-style) var(--border-color);
-    padding-top: 1rem;
+#carrito, #resultado {
+    width: 100%;
+    max-width: 600px;
+    margin: 20px 0;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #fff;
+}
+
+#carrito ul, #resultado p {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
 }
 
 button {
-    padding: 0.5rem 1rem;
-    font-size: 1rem;
+    padding: 10px 20px;
+    margin: 10px;
     border: none;
-    border-radius: 0.25rem;
+    border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    font-size: 16px;
+    transition:0.3s ease;
 }
 
-button:hover {
-    opacity: 0.9;
+#agregarBtn {
+    background-color: #4CAF50;
+    color: white;
 }
 
-@media (max-width: 768px) {
-    .container {
-        padding: 0 10px;
-    }
-
-    button {
-        font-size: 0.875rem;
-        padding: 0.5rem;
-    }
+#agregarBtn:hover {
+    background-color: #45a049;
 }
 
+#finalizarBtn {
+    background-color: #f44336;
+    color: white;
+}
+
+#finalizarBtn:hover {
+    background-color: #da190b;
+}
+
+#crearUsuarioBtn {
+    background-color: #008CBA;
+    color: white;
+}
+
+#crearUsuarioBtn:hover {
+    background-color: #007bb5;
+}
+
+.swal2-popup {
+    font-size: 1.6rem !important;
+}
