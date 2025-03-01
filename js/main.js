@@ -33,7 +33,7 @@ const carrito = new Carrito();
 
 async function cargarProductos() {
   try {
-    const response = await fetch("https://fakestoreapi.com/products?limit=6");
+    const response = await fetch("assets/data/data.json");
 
     if (!response.ok) {
       throw new Error("No se pudieron cargar los productos");
@@ -41,14 +41,14 @@ async function cargarProductos() {
 
     const data = await response.json();
 
-    const productos = data.map(
+    const productos = data.productos.map(
       (item) =>
         new Producto(
           item.id,
-          item.title,
-          item.price,
-          item.image,
-          item.description
+          item.nombre,
+          item.precio,
+          item.imagen,
+          item.descripcion
         )
     );
 
@@ -96,8 +96,9 @@ function mostrarProductos(productos) {
     boton.textContent = "Agregar al carrito";
     boton.className = "btn-agregar";
 
-    boton.addEventListener("click", () => agregarAlCarrito(producto)) /
-      card.appendChild(imagen);
+    boton.addEventListener("click", () => agregarAlCarrito(producto));
+
+    card.appendChild(imagen);
     card.appendChild(nombre);
     card.appendChild(precio);
     card.appendChild(boton);
@@ -199,6 +200,12 @@ function inicializar() {
 
   const header = document.querySelector("header");
   if (header) {
+    const contadorCarrito = document.createElement("span");
+    contadorCarrito.id = "carrito-contador";
+    contadorCarrito.textContent = "0";
+    contadorCarrito.className = "carrito-contador";
+
+    btnVerCarrito.appendChild(contadorCarrito);
     header.appendChild(btnVerCarrito);
   }
 }
@@ -259,5 +266,3 @@ function mostrarCarrito() {
 }
 
 document.addEventListener("DOMContentLoaded", inicializar);
-
-import Swal from "sweetalert2";

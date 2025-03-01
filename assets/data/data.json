@@ -1,25 +1,67 @@
 {
   "productos": [
     {
-      "id": 1,
-      "nombre": "Producto 1",
-      "precio": 19.99,
-      "imagen": "https://via.placeholder.com/150",
-      "descripcion": "Descripción del producto 1"
+      "id": 7,
+      "nombre": "Canelones",
+      "precio": 5000,
+      "imagen": "assets/imagen/canelones.jpeg",
+      "descripcion": "Canelones rellenos de carne y espinaca"
     },
     {
-      "id": 2,
-      "nombre": "Producto 2",
-      "precio": 29.99,
-      "imagen": "https://via.placeholder.com/150",
-      "descripcion": "Descripción del producto 2"
+      "id": 8,
+      "nombre": "Sorrentinos",
+      "precio": 5000,
+      "imagen": "assets/imagen/sorrentinos.jpeg",
+      "descripcion": "Sorrentinos rellenos de jamón y queso"
     },
     {
-      "id": 3,
-      "nombre": "Producto 3",
-      "precio": 39.99,
-      "imagen": "https://via.placeholder.com/150",
-      "descripcion": "Descripción del producto 3"
+      "id": 9,
+      "nombre": "Tallarines",
+      "precio": 5000,
+      "imagen": "assets/imagen/tallarines.jpeg",
+      "descripcion": "Tallarines frescos caseros"
+    },
+    {
+      "id": 10,
+      "nombre": "Lasaña",
+      "precio": 5000,
+      "imagen": "assets/imagen/lasaña.jpeg",
+      "descripcion": "Lasaña con capas de carne y queso"
+    },
+    {
+      "id": 11,
+      "nombre": "Salsa Scarparo",
+      "precio": 8000,
+      "imagen": "assets/imagen/scarparo.jpeg",
+      "descripcion": "Salsa Scarparo con panceta y crema"
+    },
+    {
+      "id": 12,
+      "nombre": "Salsa Mixta",
+      "precio": 8000,
+      "imagen": "assets/imagen/salsamix.jpeg",
+      "descripcion": "Salsa Mixta combinada con tomate y crema"
+    },
+    {
+      "id": 13,
+      "nombre": "Salsa Boloñesa",
+      "precio": 8000,
+      "imagen": "assets/imagen/bolognesa.jpeg",
+      "descripcion": "Salsa Boloñesa con carne y tomate"
+    },
+    {
+      "id": 14,
+      "nombre": "Salsa Bechamel",
+      "precio": 8000,
+      "imagen": "assets/imagen/bechamel.jpeg",
+      "descripcion": "Salsa Bechamel clásica para pastas"
+    },
+    {
+      "id": 15,
+      "nombre": "Salsa Humita",
+      "precio": 8000,
+      "imagen": "assets/imagen/humita.jpeg",
+      "descripcion": "Salsa Humita con choclo y crema"
     }
   ]
 }
