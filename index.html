@@ -5,46 +5,87 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tienda de Pasta</title>
     <link rel="stylesheet" href="css/styles.css" />
-
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   </head>
-  <body>
-    <header>
-      <h1>Tienda de Pasta</h1>
-      <nav>
-        <ul>
-          <li><a href="index.html">Inicio</a></li>
-          <li><a href="page/productos.html">Productos</a></li>
-          <li><a href="page/contacto.html">Contacto</a></li>
-        </ul>
-      </nav>
+  <body
+    class="bg-cover bg-center"
+    style="background-image: url('assets/imagen/fondo de pasta.jpeg')"
+  >
+    <header class="bg-white shadow-md py-4">
+      <div class="container mx-auto px-4 flex justify-between items-center">
+        <h1 class="text-2xl font-bold">Tienda de Pasta</h1>
+        <nav>
+          <ul class="flex space-x-4">
+            <li><a href="index.html" class="hover:text-gray-500">Inicio</a></li>
+            <li>
+              <a href="page/productos.html" class="hover:text-gray-500"
+                >Productos</a
+              >
+            </li>
+            <li>
+              <a href="page/contacto.html" class="hover:text-gray-500"
+                >Contacto</a
+              >
+            </li>
+          </ul>
+        </nav>
+      </div>
     </header>
 
-    <main>
-      <section id="productos-container"></section>
+    <main class="container mx-auto mt-8 px-4">
+      <section class="bg-white rounded-lg shadow-md overflow-hidden">
+        <div class="p-8">
+          <h2 class="text-3xl font-bold mb-4">
+            Las mejores pastas artesanales
+          </h2>
+          <p class="text-gray-700 mb-4">
+            Elaboradas con ingredientes frescos y recetas tradicionales
+          </p>
+          <a
+            href="page/productos.html"
+            class="inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            >Ver Productos</a
+          >
+        </div>
+      </section>
 
-      <section id="formulario">
-        <h2>Contacto</h2>
-        <form id="contactForm">
-          <div>
-            <label for="nombre">Nombre:</label>
-            <input type="text" id="nombre" required />
-          </div>
-          <div>
-            <label for="email">Email:</label>
-            <input type="email" id="email" required />
-          </div>
-          <div>
-            <label for="mensaje">Mensaje:</label>
-            <textarea id="mensaje" required></textarea>
-          </div>
-          <button type="submit">Enviar</button>
-        </form>
+      <section id="productos-container" class="mt-8">
+        <h2 class="text-2xl font-bold mb-4">Productos Destacados</h2>
+      </section>
+
+      <section class="bg-white rounded-lg shadow-md overflow-hidden mt-8">
+        <div class="p-8">
+          <h3 class="text-xl font-bold mb-4">¡Oferta Especial!</h3>
+          <p class="text-gray-700 mb-4">
+            Compra 2 pastas y lleva una salsa con 15% de descuento
+          </p>
+          <a
+            href="page/productos.html"
+            class="inline-block bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+            >Ver Ofertas</a
+          >
+        </div>
       </section>
     </main>
 
-    <footer>
-      <p>Tienda de Pasta - Todos los derechos reservados</p>
+    <footer class="bg-gray-100 py-4 mt-8">
+      <div class="container mx-auto px-4 text-center">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <h3 class="text-lg font-bold mb-2">Tienda de Pasta</h3>
+            <p>Av. Siempre Viva 123, Springfield</p>
+            <p>Tel: (123) 456-7890</p>
+            <p>Email: info@tiendadepasta.com</p>
+          </div>
+          <div>
+            <h3 class="text-lg font-bold mb-2">Horarios</h3>
+            <p>Lunes a Viernes: 9:00 - 20:00</p>
+            <p>Sábados: 9:00 - 14:00</p>
+            <p>Domingos: Cerrado</p>
+          </div>
+        </div>
+        <p class="mt-4">Tienda de Pasta - Todos los derechos reservados</p>
+      </div>
     </footer>
 
     <script src="js/main.js"></script>

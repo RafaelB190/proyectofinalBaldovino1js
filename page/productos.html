@@ -7,24 +7,37 @@
     <link rel="stylesheet" href="../css/styles.css" />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   </head>
-  <body>
-    <header>
-      <h1>Tienda de Pasta</h1>
-      <nav>
-        <ul>
-          <li><a href="../index.html">Inicio</a></li>
-          <li><a href="productos.html">Productos</a></li>
-          <li><a href="contacto.html">Contacto</a></li>
-        </ul>
-      </nav>
+  <body
+    class="bg-cover bg-center"
+    style="background-image: url('../assets/imagen/fondo de pasta.jpeg')"
+  >
+    <header class="bg-white shadow-md py-4">
+      <div class="container mx-auto px-4 flex justify-between items-center">
+        <h1 class="text-2xl font-bold">Tienda de Pasta</h1>
+        <nav>
+          <ul class="flex space-x-4">
+            <li>
+              <a href="../index.html" class="hover:text-gray-500">Inicio</a>
+            </li>
+            <li>
+              <a href="productos.html" class="hover:text-gray-500">Productos</a>
+            </li>
+            <li>
+              <a href="contacto.html" class="hover:text-gray-500">Contacto</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
     </header>
 
-    <main>
+    <main class="container mx-auto mt-8 px-4">
       <section id="productos-container"></section>
     </main>
 
-    <footer>
-      <p>Tienda de Pasta - Todos los derechos reservados</p>
+    <footer class="bg-gray-100 py-4 mt-8">
+      <div class="container mx-auto px-4 text-center">
+        <p>Tienda de Pasta - Todos los derechos reservados</p>
+      </div>
     </footer>
 
     <script src="../js/main.js"></script>

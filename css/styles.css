@@ -1,12 +1,13 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
 body {
   font-family: "Arial", sans-serif;
   background-size: cover;
   background-position: center;
   margin: 0;
   padding: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 }
 
 header {
@@ -52,7 +53,7 @@ header nav ul li a {
 .producto-card img {
   width: 100%;
   height: 200px;
-  object-fit: contain;
+  object-fit: cover;
   margin-bottom: 10px;
 }
 
@@ -61,6 +62,14 @@ header nav ul li a {
   font-size: 1.2rem;
   text-align: center;
   height: 50px;
+  overflow: hidden;
+}
+
+.descripcion {
+  text-align: center;
+  color: #666;
+  margin-bottom: 10px;
+  height: 60px;
   overflow: hidden;
 }
 
@@ -113,19 +122,88 @@ header nav ul li a {
 .carrito-item {
   display: flex;
   align-items: center;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
   padding: 10px;
   border-bottom: 1px solid #eee;
 }
 
 .carrito-item img {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
   margin-right: 15px;
+}
+
+.carrito-item-info {
+  flex: 1;
+}
+
+.carrito-item-info h4 {
+  margin: 0 0 5px 0;
+}
+
+.carrito-item-controles {
+  display: flex;
+  align-items: center;
+  margin-top: 8px;
+}
+
+.btn-cantidad {
+  width: 30px;
+  height: 30px;
+  background-color: #f0f0f0;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.btn-cantidad:hover {
+  background-color: #e0e0e0;
+}
+
+.btn-eliminar {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.btn-eliminar:hover {
+  background-color: #c82333;
 }
 
 .carrito-total {
   margin-top: 15px;
   text-align: right;
   font-size: 1.2rem;
+  padding: 10px;
+  border-top: 2px solid #eee;
+}
+
+.carrito-acciones {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+}
+
+.btn-vaciar {
+  background-color: #6c757d;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn-vaciar:hover {
+  background-color: #5a6268;
 }
 
 #formulario {
@@ -172,4 +250,131 @@ footer {
   width: 100%;
   padding: 20px;
   background-color: #f8f9fa;
+}
+
+.checkout-form,
+.pago-form {
+  text-align: left;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.form-row {
+  display: flex;
+  gap: 10px;
+}
+
+.form-row .form-group {
+  flex: 1;
+}
+
+.metodos-pago {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.metodo-pago {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.datos-pago {
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 1px solid #eee;
+}
+
+.comprobante {
+  text-align: left;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.comprobante-header,
+.comprobante-cliente,
+.comprobante-productos,
+.comprobante-pago,
+.comprobante-footer {
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.tabla-productos {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+.tabla-productos th,
+.tabla-productos td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.tabla-productos th {
+  background-color: #f8f9fa;
+}
+
+.filtros-container {
+  margin-bottom: 20px;
+}
+
+.botones-filtro {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.btn-filtro {
+  background-color: #f0f0f0;
+  border: 1px solid #ddd;
+  padding: 8px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn-filtro.activo {
+  background-color: #007bff;
+  color: white;
+  border-color: #007bff;
+}
+
+.sobre-nosotros {
+  background-color: white;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 30px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  max-width: 800px;
+  width: 100%;
+}
+
+.sobre-nosotros h2 {
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.sobre-nosotros p {
+  line-height: 1.6;
+  margin-bottom: 15px;
+}
+
+.sobre-nosotros img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin: 15px 0;
 }

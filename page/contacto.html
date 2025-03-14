@@ -7,41 +7,137 @@
     <link rel="stylesheet" href="../css/styles.css" />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   </head>
-  <body>
-    <header>
-      <h1>Tienda de Pasta</h1>
-      <nav>
-        <ul>
-          <li><a href="../index.html">Inicio</a></li>
-          <li><a href="productos.html">Productos</a></li>
-          <li><a href="contacto.html">Contacto</a></li>
-        </ul>
-      </nav>
+  <body
+    class="bg-cover bg-center"
+    style="background-image: url('../assets/imagen/fondo de pasta.jpeg')"
+  >
+    <header class="bg-white shadow-md py-4">
+      <div class="container mx-auto px-4 flex justify-between items-center">
+        <h1 class="text-2xl font-bold">Tienda de Pasta</h1>
+        <nav>
+          <ul class="flex space-x-4">
+            <li>
+              <a href="../index.html" class="hover:text-gray-500">Inicio</a>
+            </li>
+            <li>
+              <a href="productos.html" class="hover:text-gray-500">Productos</a>
+            </li>
+            <li>
+              <a href="contacto.html" class="hover:text-gray-500">Contacto</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
     </header>
 
-    <main>
-      <section id="formulario">
-        <h2>Contacto</h2>
-        <form id="contactForm">
+    <main class="container mx-auto mt-8 px-4">
+      <section class="bg-white rounded-lg shadow-md overflow-hidden p-8">
+        <h2 class="text-2xl font-bold mb-4">Sobre Nosotros</h2>
+        <p class="text-gray-700 mb-4">
+          Bienvenidos a <strong>Tienda de Pasta</strong>, donde la tradición
+          italiana se encuentra con la pasión argentina. Desde 2010, nos hemos
+          dedicado a elaborar las mejores pastas artesanales siguiendo recetas
+          tradicionales transmitidas de generación en generación.
+        </p>
+        <p class="text-gray-700 mb-4">
+          Nuestro secreto está en la selección de los mejores ingredientes
+          frescos y en el cuidado artesanal de cada paso del proceso. Elaboramos
+          diariamente nuestras pastas para garantizar la máxima frescura y sabor
+          en cada bocado.
+        </p>
+        <p class="text-gray-700 mb-4">
+          En nuestra tienda encontrarás una amplia variedad de pastas frescas,
+          desde los clásicos tallarines y sorrentinos hasta especialidades como
+          canelones y lasañas. Complementamos nuestra oferta con deliciosas
+          salsas caseras que realzan el sabor de nuestras pastas.
+        </p>
+        <p class="text-gray-700 mb-4">
+          Te invitamos a probar nuestros productos y a formar parte de esta
+          experiencia gastronómica que combina tradición, calidad y pasión por
+          la buena comida.
+        </p>
+      </section>
+
+      <section class="bg-white rounded-lg shadow-md overflow-hidden p-8 mt-8">
+        <h2 class="text-2xl font-bold mb-4">Contacto</h2>
+        <form id="contactForm" class="flex flex-col gap-4">
           <div>
-            <label for="nombre">Nombre:</label>
-            <input type="text" id="nombre" required />
+            <label
+              for="nombre"
+              class="block text-gray-700 text-sm font-bold mb-2"
+              >Nombre:</label
+            >
+            <input
+              type="text"
+              id="nombre"
+              required
+              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            />
           </div>
           <div>
-            <label for="email">Email:</label>
-            <input type="email" id="email" required />
+            <label
+              for="email"
+              class="block text-gray-700 text-sm font-bold mb-2"
+              >Email:</label
+            >
+            <input
+              type="email"
+              id="email"
+              required
+              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            />
           </div>
           <div>
-            <label for="mensaje">Mensaje:</label>
-            <textarea id="mensaje" required></textarea>
+            <label
+              for="telefono"
+              class="block text-gray-700 text-sm font-bold mb-2"
+              >Teléfono:</label
+            >
+            <input
+              type="tel"
+              id="telefono"
+              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            />
           </div>
-          <button type="submit">Enviar</button>
+          <div>
+            <label
+              for="asunto"
+              class="block text-gray-700 text-sm font-bold mb-2"
+              >Asunto:</label
+            >
+            <input
+              type="text"
+              id="asunto"
+              required
+              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            />
+          </div>
+          <div>
+            <label
+              for="mensaje"
+              class="block text-gray-700 text-sm font-bold mb-2"
+              >Mensaje:</label
+            >
+            <textarea
+              id="mensaje"
+              required
+              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            ></textarea>
+          </div>
+          <button
+            type="submit"
+            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          >
+            Enviar
+          </button>
         </form>
       </section>
     </main>
 
-    <footer>
-      <p>Tienda de Pasta - Todos los derechos reservados</p>
+    <footer class="bg-gray-100 py-4 mt-8">
+      <div class="container mx-auto px-4 text-center">
+        <p>Tienda de Pasta - Todos los derechos reservados</p>
+      </div>
     </footer>
 
     <script src="../js/main.js"></script>

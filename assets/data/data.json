@@ -1,67 +1,74 @@
 {
   "productos": [
     {
-      "id": 7,
+      "id": 1,
       "nombre": "Canelones",
       "precio": 5000,
       "imagen": "assets/imagen/canelones.jpeg",
       "descripcion": "Canelones rellenos de carne y espinaca"
     },
     {
-      "id": 8,
+      "id": 2,
       "nombre": "Sorrentinos",
       "precio": 5000,
       "imagen": "assets/imagen/sorrentinos.jpeg",
       "descripcion": "Sorrentinos rellenos de jamón y queso"
     },
     {
-      "id": 9,
+      "id": 3,
       "nombre": "Tallarines",
       "precio": 5000,
       "imagen": "assets/imagen/tallarines.jpeg",
       "descripcion": "Tallarines frescos caseros"
     },
     {
-      "id": 10,
+      "id": 4,
       "nombre": "Lasaña",
       "precio": 5000,
       "imagen": "assets/imagen/lasaña.jpeg",
       "descripcion": "Lasaña con capas de carne y queso"
     },
     {
-      "id": 11,
+      "id": 5,
       "nombre": "Salsa Scarparo",
       "precio": 8000,
       "imagen": "assets/imagen/scarparo.jpeg",
       "descripcion": "Salsa Scarparo con panceta y crema"
     },
     {
-      "id": 12,
+      "id": 6,
       "nombre": "Salsa Mixta",
       "precio": 8000,
       "imagen": "assets/imagen/salsamix.jpeg",
       "descripcion": "Salsa Mixta combinada con tomate y crema"
     },
     {
-      "id": 13,
+      "id": 7,
       "nombre": "Salsa Boloñesa",
       "precio": 8000,
       "imagen": "assets/imagen/bolognesa.jpeg",
       "descripcion": "Salsa Boloñesa con carne y tomate"
     },
     {
-      "id": 14,
+      "id": 8,
       "nombre": "Salsa Bechamel",
       "precio": 8000,
       "imagen": "assets/imagen/bechamel.jpeg",
       "descripcion": "Salsa Bechamel clásica para pastas"
     },
     {
-      "id": 15,
+      "id": 9,
       "nombre": "Salsa Humita",
       "precio": 8000,
       "imagen": "assets/imagen/humita.jpeg",
       "descripcion": "Salsa Humita con choclo y crema"
+    },
+    {
+      "id": 10,
+      "nombre": "Ravioles",
+      "precio": 5000,
+      "imagen": "assets/imagen/ravioles.jpeg",
+      "descripcion": "Ravioles de ricota y nuez"
     }
   ]
 }
