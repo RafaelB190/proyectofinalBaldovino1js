@@ -1,10 +1,15 @@
-const path = require("path");
+import CopyWebpackPlugin from "copy-webpack-plugin";
+import CssMinimizerPlugin from "css-minimizer-webpack-plugin";
+import MiniCssExtractPlugin from "mini-css-extract-plugin";
+import path from "path";
+import TerserPlugin from "terser-webpack-plugin";
 
-module.exports = {
+export default {
   entry: "./js/main.js",
   output: {
-    filename: "bundle.js",
+    filename: "bundle.[contenthash].js",
     path: path.resolve(__dirname, "dist"),
+    clean: true,
   },
   module: {
     rules: [
@@ -20,16 +25,52 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: ["style-loader", "css-loader"],
+        use: [MiniCssExtractPlugin.loader, "css-loader", "postcss-loader"],
       },
       {
         test: /\.(png|svg|jpg|jpeg|gif)$/i,
         type: "asset/resource",
+        generator: {
+          filename: "assets/images/[name].[hash][ext]",
+        },
       },
     ],
   },
   resolve: {
     extensions: [".js", ".jsx", ".ts", ".tsx"],
+  },
+  plugins: [
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: "assets",
+          to: "assets",
+          globOptions: {
+            ignore: ["**/.DS_Store"],
+          },
+        },
+        { from: "page", to: "page" },
+        { from: "index.html", to: "index.html" },
+        { from: "css", to: "css" },
+      ],
+    }),
+    new MiniCssExtractPlugin({
+      filename: "css/[name].[contenthash].css",
+    }),
+  ],
+  optimization: {
+    minimize: true,
+    minimizer: [new TerserPlugin(), new CssMinimizerPlugin()],
+    splitChunks: {
+      chunks: "all",
+      cacheGroups: {
+        vendor: {
+          test: /[\\/]node_modules[\\/]/,
+          name: "vendors",
+          chunks: "all",
+        },
+      },
+    },
   },
   devServer: {
     static: {

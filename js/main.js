@@ -107,32 +107,54 @@ class Carrito {
   }
 }
 
+async function verificarImagen(url) {
+  try {
+    const response = await fetch(url, { method: "HEAD" });
+    return response.ok;
+  } catch (error) {
+    console.error(`Error al verificar la imagen :`, error);
+    return false;
+  }
+}
+
 const carrito = new Carrito();
 let todosLosProductos = [];
 
 async function cargarProductos() {
   try {
-    const response = await fetch("../assets/data/data.json");
+    const paginaActual = window.location.pathname;
+    const esSubpagina = paginaActual.includes("/page/");
+
+    const jsonPath = "./assets/data/data.json";
+
+    const response = await fetch(jsonPath);
+    console.log("Response status:", response.status);
 
     if (!response.ok) {
+      console.error("Response text:", await response.text());
       throw new Error("No se pudieron cargar los productos");
     }
 
     const data = await response.json();
 
-    todosLosProductos = data.productos.map(
-      (item) =>
-        new Producto(
+    todosLosProductos = await Promise.all(
+      data.productos.map(async (item) => {
+        let rutaImagen = item.imagen;
+        if (esSubpagina) {
+          rutaImagen = `../${item.imagen}`;
+        }
+        const imagenExiste = await verificarImagen(rutaImagen);
+
+        return new Producto(
           item.id,
           item.nombre,
           item.precio,
-          item.imagen,
+          imagenExiste ? rutaImagen : "assets/imagen/placeholder.jpeg",
           item.descripcion,
-          item.nombre.toLowerCase().includes("salsa") ? "salsas" : "pastas"
-        )
+          item.categoria
+        );
+      })
     );
-
-    const paginaActual = window.location.pathname;
 
     if (paginaActual.includes("productos.html")) {
       mostrarProductosPorCategoria();
@@ -248,16 +270,23 @@ function mostrarProductos(productos) {
     imagen.src = producto.imagen;
     imagen.alt = producto.nombre;
 
+    imagen.onerror = function () {
+      console.error(`Error al cargar la imagen: `);
+      this.src = window.location.pathname.includes("/page/")
+        ? "../assets/imagen/placeholder.jpeg"
+        : "assets/imagen/placeholder.jpeg";
+      this.alt = "Imagen no disponible";
+    };
+
     const nombre = document.createElement("h3");
     nombre.textContent = producto.nombre;
 
     const descripcion = document.createElement("p");
-    descripcion.className = "descripcion";
     descripcion.textContent = producto.descripcion;
 
     const precio = document.createElement("p");
     precio.className = "precio";
-    precio.textContent = `$${producto.precio.toFixed(2)}`;
+    precio.textContent = `$${producto.precio}`;
 
     const boton = document.createElement("button");
     boton.textContent = "Agregar al carrito";
@@ -389,9 +418,9 @@ function generarHTMLCarrito() {
       }" width="50">
               <div class="carrito-item-info">
                   <h4>${item.producto.nombre}</h4>
-                  <p>$${item.producto.precio.toFixed(2)} x ${
+                  <p>${item.producto.precio} x ${
         item.cantidad
-      } = $${item.obtenerSubtotal().toFixed(2)}</p>
+      } = ${item.obtenerSubtotal()}</p> // cSpell:disable-line
                   <div class="carrito-item-controles">
                       <button class="btn-cantidad" onclick="disminuirCantidad(${
                         item.producto.id
@@ -430,12 +459,10 @@ function mostrarCarrito() {
               <div class="carrito-contenido">
                   ${productosHTML}
                   <div class="carrito-total">
-                      <strong>Total: $${carrito
-                        .calcularTotal()
-                        .toFixed(2)}</strong>
+                      <strong>Total: ${carrito.calcularTotal()}</strong> // cSpell:disable-line
                   </div>
                   <div class="carrito-acciones">
-                      <button class="btn-vaciar" onclick="vaciarCarrito()">Vaciar Carrito</button>
+                      <button class="btn-vaciar" onclick="vaciarCarrito()">Vaciar Carrito</button> // cSpell:disable-line
                   </div>
               </div>
           `,
@@ -487,28 +514,28 @@ function mostrarFormularioCheckout() {
     html: `
       <form id="checkoutForm" class="checkout-form">
         <div class="form-group">
-          <label for="checkout-nombre">Nombre completo:</label>
-          <input type="text" id="checkout-nombre" class="swal2-input" required>
+          <label for="checkout-nombre">Nombre completo:</label> // cSpell:disable-line
+          <input type="text" id="checkout-nombre" class="swal2-input" required> // cSpell:disable-line
         </div>
         <div class="form-group">
-          <label for="checkout-email">Email:</label>
-          <input type="email" id="checkout-email" class="swal2-input" required>
+          <label for="checkout-email">Email:</label> // cSpell:disable-line
+          <input type="email" id="checkout-email" class="swal2-input" required> // cSpell:disable-line
         </div>
         <div class="form-group">
-          <label for="checkout-telefono">Teléfono:</label>
-          <input type="tel" id="checkout-telefono" class="swal2-input" required>
+          <label for="checkout-telefono">Teléfono:</label> // cSpell:disable-line
+          <input type="tel" id="checkout-telefono" class="swal2-input" required> // cSpell:disable-line
         </div>
         <div class="form-group">
-          <label for="checkout-direccion">Dirección:</label>
-          <input type="text" id="checkout-direccion" class="swal2-input" required>
+          <label for="checkout-direccion">Dirección:</label> // cSpell:disable-line
+          <input type="text" id="checkout-direccion" class="swal2-input" required> // cSpell:disable-line
         </div>
         <div class="form-group">
-          <label for="checkout-ciudad">Ciudad:</label>
-          <input type="text" id="checkout-ciudad" class="swal2-input" required>
+          <label for="checkout-ciudad">Ciudad:</label> // cSpell:disable-line
+          <input type="text" id="checkout-ciudad" class="swal2-input" required> // cSpell:disable-line
         </div>
         <div class="form-group">
-          <label for="checkout-codigo-postal">Código Postal:</label>
-          <input type="text" id="checkout-codigo-postal" class="swal2-input" required>
+          <label for="checkout-codigo-postal">Código Postal:</label> // cSpell:disable-line
+          <input type="text" id="checkout-codigo-postal" class="swal2-input" required> // cSpell:disable-line
         </div>
       </form>
     `,
@@ -546,41 +573,41 @@ function mostrarFormularioPago(datosEnvio) {
     html: `
       <form id="pagoForm" class="pago-form">
         <div class="form-group">
-          <label>Seleccione método de pago:</label>
+          <label>Seleccione método de pago:</label> 
           <div class="metodos-pago">
             <div class="metodo-pago">
               <input type="radio" id="tarjeta" name="metodo-pago" value="tarjeta" checked>
-              <label for="tarjeta">Tarjeta de Crédito/Débito</label>
+              <label for="tarjeta">Tarjeta de Crédito/Débito</label> 
             </div>
             <div class="metodo-pago">
               <input type="radio" id="transferencia" name="metodo-pago" value="transferencia">
-              <label for="transferencia">Transferencia Bancaria</label>
+              <label for="transferencia">Transferencia Bancaria</label> 
             </div>
             <div class="metodo-pago">
               <input type="radio" id="efectivo" name="metodo-pago" value="efectivo">
-              <label for="efectivo">Efectivo en Entrega</label>
+              <label for="efectivo">Efectivo en Entrega</label> 
             </div>
           </div>
         </div>
         
         <div id="datos-tarjeta" class="datos-pago">
           <div class="form-group">
-            <label for="numero-tarjeta">Número de Tarjeta:</label>
-            <input type="text" id="numero-tarjeta" class="swal2-input" placeholder="XXXX XXXX XXXX XXXX">
+            <label for="numero-tarjeta">Número de Tarjeta:</label> 
+            <input type="text" id="numero-tarjeta" class="swal2-input" placeholder="XXXX XXXX XXXX XXXX"> 
           </div>
           <div class="form-row">
             <div class="form-group">
               <label for="fecha-vencimiento">Fecha de Vencimiento:</label>
-              <input type="text" id="fecha-vencimiento" class="swal2-input" placeholder="MM/AA">
+              <input type="text" id="fecha-vencimiento" class="swal2-input" placeholder="MM/AA"> 
             </div>
             <div class="form-group">
-              <label for="cvv">CVV:</label>
-              <input type="text" id="cvv" class="swal2-input" placeholder="123">
+              <label for="cvv">CVV:</label> 
+              <input type="text" id="cvv" class="swal2-input" placeholder="123"> 
             </div>
           </div>
           <div class="form-group">
-            <label for="titular">Titular de la Tarjeta:</label>
-            <input type="text" id="titular" class="swal2-input">
+            <label for="titular">Titular de la Tarjeta:</label> 
+            <input type="text" id="titular" class="swal2-input"> 
           </div>
         </div>
       </form>
@@ -646,6 +673,7 @@ function mostrarFormularioPago(datosEnvio) {
 }
 
 function finalizarCompra(datosEnvio, datosPago) {
+  const carrito = new Carrito();
   const numeroOrden = Math.floor(100000 + Math.random() * 900000);
   const fecha = new Date().toLocaleDateString();
 
@@ -653,10 +681,10 @@ function finalizarCompra(datosEnvio, datosPago) {
     .map((item) => {
       return `
       <tr>
-        <td>${item.producto.nombre}</td>
-        <td>${item.cantidad}</td>
-        <td>$${item.producto.precio.toFixed(2)}</td>
-        <td>$${item.obtenerSubtotal().toFixed(2)}</td>
+        <td>${item.producto.nombre}</td> 
+        <td>${item.cantidad}</td> 
+        <td>${item.producto.precio}</td> 
+        <td>${item.obtenerSubtotal()}</td> 
       </tr>
     `;
     })
@@ -671,31 +699,31 @@ function finalizarCompra(datosEnvio, datosPago) {
   Swal.fire({
     title: "¡Compra Realizada con Éxito!",
     html: `
-      <div class="comprobante">
-        <div class="comprobante-header">
+      <div class="comprobante"> 
+        <div class="comprobante-header"> 
           <h3>Comprobante de Compra</h3>
-          <p><strong>Orden #:</strong> ${numeroOrden}</p>
+          <p><strong>Orden #:</strong> ${numeroOrden}</p> 
           <p><strong>Fecha:</strong> ${fecha}</p>
         </div>
         
-        <div class="comprobante-cliente">
-          <h4>Datos del Cliente</h4>
+        <div class="comprobante-cliente"> 
+          <h4>Datos del Cliente</h4> 
           <p><strong>Nombre:</strong> ${datosEnvio.nombre}</p>
-          <p><strong>Email:</strong> ${datosEnvio.email}</p>
-          <p><strong>Teléfono:</strong> ${datosEnvio.telefono}</p>
+          <p><strong>Email:</strong> ${datosEnvio.email}</p> 
+          <p><strong>Teléfono:</strong> ${datosEnvio.telefono}</p> 
           <p><strong>Dirección:</strong> ${datosEnvio.direccion}, ${
       datosEnvio.ciudad
     }, CP: ${datosEnvio.codigoPostal}</p>
         </div>
         
-        <div class="comprobante-productos">
-          <h4>Productos Adquiridos</h4>
-          <table class="tabla-productos">
+        <div class="comprobante-productos"> 
+          <h4>Productos Adquiridos</h4> 
+          <table class="tabla-productos"> 
             <thead>
               <tr>
-                <th>Producto</th>
-                <th>Cantidad</th>
-                <th>Precio Unit.</th>
+                <th>Producto</th> 
+                <th>Cantidad</th> 
+                <th>Precio Unit.</th> 
                 <th>Subtotal</th>
               </tr>
             </thead>
@@ -704,20 +732,20 @@ function finalizarCompra(datosEnvio, datosPago) {
             </tbody>
             <tfoot>
               <tr>
-                <td colspan="3"><strong>Total</strong></td>
-                <td><strong>$${carrito.calcularTotal().toFixed(2)}</strong></td>
+                <td colspan="3"><strong>Total</strong></td> 
+                <td><strong>${carrito.calcularTotal()}</strong></td>
               </tr>
             </tfoot>
           </table>
         </div>
         
-        <div class="comprobante-pago">
-          <h4>Método de Pago</h4>
-          <p>${metodoPagoTexto[datosPago.metodoPago]}</p>
+        <div class="comprobante-pago"> 
+          <h4>Método de Pago</h4> 
+          <p>${metodoPagoTexto[datosPago.metodoPago]}</p> 
         </div>
         
-        <div class="comprobante-footer">
-          <p>¡Gracias por tu compra! Recibirás un email con los detalles de tu pedido.</p>
+        <div class="comprobante-footer"> 
+          <p>¡Gracias por tu compra! Recibirás un email con los detalles de tu pedido.</p> 
         </div>
       </div>
     `,
